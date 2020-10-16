@@ -11,20 +11,21 @@ public class UidToName {
 		System.out.print("Enter User ID:\n");
 		String uid;
 		uid = buffread.readLine();
-	//Constructing the URL
-	URL profile = new URL("https://www.ecs.soton.ac.uk/people/"+uid);
-	BufferedReader in = new BufferedReader( new InputStreamReader(profile.openStream()));
-	String input;
-	input = in.readLine();
-	int start;
-	int end;
-	while(input != null) {
+		//Constructing the URL
+		URL profile = new URL("https://www.ecs.soton.ac.uk/people/"+uid);
+		BufferedReader in = new BufferedReader( new InputStreamReader(profile.openStream()));
+		String input;
 		input = in.readLine();
-		start = input.indexOf("<title>");
-		end = input.indexOf("|");
-		if(start > 1){
-			System.out.println(input.substring(start+7,end));
-		}
+		int start;
+		int end;
+		//reading every line checking for the right part
+		while(input != null) {
+			input = in.readLine();
+			start = input.indexOf("<title>");
+			end = input.indexOf("|");
+			if(start > 1){
+				System.out.println(input.substring(start+7,end));
+			}
 	}
 	in.close();
 	}	
